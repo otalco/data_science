@@ -14,6 +14,11 @@ df = pd.read_csv('data_sets\\waterQuality1.csv')
 print(df.head())
 print(df.tail())
 print(df.dtypes)
+print(df.columns)  # Check the column names to ensure 'ammonia' is present
+
+# Ensure 'ammonia' column exists
+if 'ammonia' not in df.columns:
+	raise KeyError("'ammonia' column is missing from the dataset")
 
 # Identificar e remover registros com problemas nas colunas "ammonia" e "is_safe"
 df = df[pd.to_numeric(df['ammonia'], errors='coerce').notnull()]
